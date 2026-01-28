@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - FashionHub Ecommerce</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      /* Contact page specific styles */
+      .contact-container {
+        display: flex;
+        gap: 50px;
+        margin-bottom: 60px;
+        flex-wrap: wrap;
+      }
+      
+      .contact-info, .contact-form {
+        flex: 1;
+        min-width: 300px;
+      }
+      
+      .contact-detail {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      
+      .contact-icon {
+        font-size: 20px;
+        color: #088178;
+        margin-right: 15px;
+        width: 25px;
+      }
+      
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+      
+      .social-icon {
+        color: #088178;
+        font-size: 24px;
+        transition: color 0.3s;
+      }
+      
+      .social-icon:hover {
+        color: #065c56;
+      }
+      
+      .contact-form-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .form-row {
+        display: flex;
+        gap: 15px;
+      }
+      
+      .form-input {
+        flex: 1;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s;
+        font-family: 'League Spartan', sans-serif;
+      }
+      
+      .form-input:focus {
+        border-color: #088178;
+      }
+      
+      .form-textarea {
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s;
+        resize: vertical;
+        font-family: 'League Spartan', sans-serif;
+        min-height: 150px;
+      }
+      
+      .form-textarea:focus {
+        border-color: #088178;
+      }
+      
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .faq-item {
+        border: 1px solid #ebebeb;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        overflow: hidden;
+        transition: box-shadow 0.3s;
+      }
+      
+      .faq-item:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+      
+      .faq-question {
+        padding: 20px;
+        background-color: #f8f9fa;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s;
+      }
+      
+      .faq-question:hover {
+        background-color: #e9ecef;
+      }
+      
+      .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+      }
+      
+      .faq-answer.open {
+        padding: 20px;
+        max-height: 500px;
+      }
+      
+      .faq-arrow {
+        color: #088178;
+        transition: transform 0.3s;
+      }
+      
+      .faq-question.active .faq-arrow {
+        transform: rotate(180deg);
+      }
+      
+      .immediate-help {
+        background-color: #088178;
+        color: white;
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        margin: 60px 0;
+      }
+      
+      .help-options {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      
+      .help-option {
+        text-align: center;
+      }
+      
+      .help-icon {
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+      
+      @media (max-width: 768px) {
+        .contact-container, .form-row {
+          flex-direction: column;
+          gap: 20px;
+        }
+        
+        .help-options {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!--header section-->
+    <header>
+      <div id="header">
+        <div class="header-logo">
+          <a href="index.html"><img src="images/logo.png" alt="FashionHub Logo" /></a>
+        </div>
+        <div class="header-list">
+          <nav class="header-list-nav" aria-label="Main Navigation">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a class="active" href="contact.html">Contact Us</a></li>
+            </ul>
+          </nav>
+          <div class="header-list-icon">
+            <a href="#" aria-label="Shopping Cart"><i class="fa fa-bag-shopping"></i></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!--main section-->
+    <main style="margin-top: 100px;">
+      <section id="page-header" style="background-image: url('images/banner/b1.jpg'); background-size: cover; height: 40vh; display: flex; align-items: center; justify-content: center; flex-direction: column; color: white; text-align: center;">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you. Get in touch!</p>
+      </section>
+
+      <section class="section-p1" style="margin: 0 80px;">
+        <div class="contact-container">
+          <div class="contact-info">
+            <h2 style="margin-bottom: 30px; color: #222;">Get In Touch</h2>
+            <div style="margin-bottom: 30px;">
+              <div class="contact-detail">
+                <i class="fa-solid fa-location-dot contact-icon"></i>
+                <div>
+                  <h4 style="margin-bottom: 5px;">Address</h4>
+                  <p style="margin: 0;">Wellington Road, Street 32, San Francisco, CA 94102</p>
+                </div>
+              </div>
+              <div class="contact-detail">
+                <i class="fa-solid fa-phone contact-icon"></i>
+                <div>
+                  <h4 style="margin-bottom: 5px;">Phone</h4>
+                  <p style="margin: 0;">+1 (555) 123-4567</p>
+                </div>
+              </div>
+              <div class="contact-detail">
+                <i class="fa-solid fa-envelope contact-icon"></i>
+                <div>
+                  <h4 style="margin-bottom: 5px;">Email</h4>
+                  <p style="margin: 0;">info@fashionhub.com</p>
+                </div>
+              </div>
+              <div class="contact-detail">
+                <i class="fa-solid fa-clock contact-icon"></i>
+                <div>
+                  <h4 style="margin-bottom: 5px;">Business Hours</h4>
+                  <p style="margin: 0;">Monday - Saturday: 10:00 AM - 6:00 PM<br>Sunday: Closed</p>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 style="margin-bottom: 20px;">Follow Us</h3>
+              <div class="social-icons">
+                <a href="#" aria-label="Facebook" class="social-icon"><i class="fa-brands fa-facebook-square"></i></a>
+                <a href="#" aria-label="YouTube" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="Telegram" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#" aria-label="Instagram" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h2 style="margin-bottom: 30px; color: #222;">Send Us a Message</h2>
+            <form class="contact-form-container" id="contactForm">
+              <div class="form-row">
+                <input type="text" placeholder="Your Name" required class="form-input" id="nameInput" aria-label="Your Name">
+                <input type="email" placeholder="Your Email" required class="form-input" id="emailInput" aria-label="Your Email">
+              </div>
+              <input type="text" placeholder="Subject" required class="form-input" id="subjectInput" aria-label="Message Subject">
+              <textarea placeholder="Your Message" class="form-textarea" required id="messageInput" aria-label="Your Message"></textarea>
+              <button type="submit" class="normal" style="align-self: flex-start;">Send Message</button>
+            </form>
+          </div>
+        </div>
+
+        <div style="margin: 60px 0;">
+          <h2 style="text-align: center; margin-bottom: 40px;">Frequently Asked Questions</h2>
+          <div class="faq-container">
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(1)">
+                <h4 style="margin: 0;">What is your return policy?</h4>
+                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+              </div>
+              <div class="faq-answer" id="faqAnswer1">
+                <p style="margin: 0; line-height: 1.6;">We offer a 30-day return policy for all items in their original condition. Items must be unworn, unwashed, and with tags attached. Return shipping is free for defective items.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(2)">
+                <h4 style="margin: 0;">How long does shipping take?</h4>
+                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+              </div>
+              <div class="faq-answer" id="faqAnswer2">
+                <p style="margin: 0; line-height: 1.6;">Standard shipping takes 3-5 business days. Express shipping (1-2 business days) is available for an additional fee. Free shipping is available on orders over $50.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(3)">
+                <h4 style="margin: 0;">Do you ship internationally?</h4>
+                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+              </div>
+              <div class="faq-answer" id="faqAnswer3">
+                <p style="margin: 0; line-height: 1.6;">Yes, we ship to over 50 countries worldwide. International shipping rates and delivery times vary by location. Customs duties and taxes may apply.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(4)">
+                <h4 style="margin: 0;">How can I track my order?</h4>
+                <i class="fa-solid fa-chevron-down faq-arrow"></i>
+              </div>
+              <div class="faq-answer" id="faqAnswer4">
+                <p style="margin: 0; line-height: 1.6;">Once your order ships, you'll receive a tracking number via email. You can also track your order by logging into your account and visiting the "My Orders" section.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="immediate-help">
+          <h2 style="margin-bottom: 20px; color: white;">Need Immediate Help?</h2>
+          <p style="margin-bottom: 30px; font-size: 18px;">Our customer service team is available 24/7 to assist you</p>
+          <div class="help-options">
+            <div class="help-option">
+              <i class="fa-solid fa-phone help-icon"></i>
+              <p style="margin: 0; font-weight: 600;">Call Us</p>
+              <p style="margin: 5px 0 0 0;">+1 (555) 123-4567</p>
+            </div>
+            <div class="help-option">
+              <i class="fa-solid fa-comments help-icon"></i>
+              <p style="margin: 0; font-weight: 600;">Live Chat</p>
+              <p style="margin: 5px 0 0 0;">Available 24/7</p>
+            </div>
+            <div class="help-option">
+              <i class="fa-solid fa-envelope help-icon"></i>
+              <p style="margin: 0; font-weight: 600;">Email Support</p>
+              <p style="margin: 5px 0 0 0;">support@fashionhub.com</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="newsletter">
+        <div class="newsletter-text">
+          <h3>Sign Up For Newsletters</h3>
+          <h5>Get e-mail updates about our latest shop and <span>special offers</span></h5>
+        </div>
+        <div class="form">
+          <input type="email" placeholder="Your email address" id="email-address-input" aria-label="Email address for newsletter">
+          <button type="button">Sign Up</button>
+        </div>
+      </section>
+    </main>
+
+    <!--footer section-->
+    <footer>
+      <div id="footer">
+        <div class="contact">
+          <a href="index.html"><img src="images/logo.png" alt="FashionHub Logo" /></a>
+          <br><br><br>
+          <h3>Contact</h3>
+          <address>
+            <p><strong>Address:</strong> Wellington Road, Street 32. San Francisco</p>
+            <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00. Mon - Sat</p>
+          </address>
+          <h3>Follow Us</h3>
+          <br>
+          <div class="socials">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-square"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="about">
+          <h3>About</h3>
+          <br>
+          <a href="#">About Us</a>
+          <a href="#">Delivery Information</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="myaccount">
+          <h3>My Account</h3>
+          <br>
+          <a href="#">Sign In</a>
+          <a href="#">View Cart</a>
+          <a href="#">My Wishlist</a>
+          <a href="#">Track My Order</a>
+          <a href="#">Help</a>
+        </div>
+        <div class="install">
+          <h3>Install App</h3>
+          <br>
+          <p>From App Store or Google Play</p>
+          <div class="download">
+            <a href="#"><img src="images/pay/app.jpg" alt="Download from App Store"></a>
+            <a href="#"><img src="images/pay/play.jpg" alt="Download from Google Play"></a>
+          </div>
+          <p>Secured Payment Gateways</p>
+          <img src="images/pay/pay.png" alt="Payment methods accepted">
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // FAQ Toggle Functionality
+      function toggleFAQ(faqNumber) {
+        const answer = document.getElementById(`faqAnswer${faqNumber}`);
+        const question = answer.previousElementSibling;
+        
+        // Toggle active class on question
+        question.classList.toggle('active');
+        
+        // Toggle open class on answer
+        answer.classList.toggle('open');
+        
+        // Close other FAQs
+        for (let i = 1; i <= 4; i++) {
+          if (i !== faqNumber) {
+            const otherAnswer = document.getElementById(`faqAnswer${i}`);
+            const otherQuestion = otherAnswer.previousElementSibling;
+            
+            if (otherAnswer.classList.contains('open')) {
+              otherAnswer.classList.remove('open');
+              otherQuestion.classList.remove('active');
+            }
+          }
+        }
+      }
+      
+      // Form Submission Handler
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('nameInput').value;
+        const email = document.getElementById('emailInput').value;
+        const subject = document.getElementById('subjectInput').value;
+        const message = document.getElementById('messageInput').value;
+        
+        // Basic validation
+        if (name && email && subject && message) {
+          alert(`Thank you ${name}! Your message has been sent. We'll get back to you at ${email} within 24 hours.`);
+          document.getElementById('contactForm').reset();
+        } else {
+          alert('Please fill in all fields before submitting.');
+        }
+      });
+      
+      // Initialize first FAQ as open
+      document.addEventListener('DOMContentLoaded', function() {
+        toggleFAQ(1); // Open first FAQ by default
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

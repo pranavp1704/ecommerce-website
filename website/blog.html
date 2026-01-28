@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - FashionHub Ecommerce</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      /* Blog page specific styles */
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+      
+      .blog-article {
+        border: 1px solid #ebebeb;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+        transition: box-shadow 0.3s, transform 0.3s;
+        height: 100%;
+        background-color: white;
+      }
+      
+      .blog-article:hover {
+        box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+        transform: translateY(-5px);
+      }
+      
+      .blog-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+      
+      .blog-article:hover .blog-image {
+        transform: scale(1.05);
+      }
+      
+      .blog-content {
+        padding: 20px;
+      }
+      
+      .blog-category {
+        color: #088178;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      
+      .blog-title {
+        margin: 10px 0;
+        color: #222;
+        font-size: 20px;
+        line-height: 1.4;
+        min-height: 56px;
+      }
+      
+      .blog-excerpt {
+        color: #465b52;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 72px;
+      }
+      
+      .blog-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+      }
+      
+      .blog-date {
+        color: #969696;
+        font-size: 14px;
+      }
+      
+      .blog-read-more {
+        color: #088178;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: color 0.3s;
+      }
+      
+      .blog-read-more:hover {
+        color: #065c56;
+      }
+      
+      .load-more-container {
+        text-align: center;
+        margin: 40px 0;
+      }
+      
+      .blog-container {
+        margin: 0 80px;
+      }
+      
+      .blog-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .blog-header h1 {
+        margin-bottom: 15px;
+      }
+      
+      .blog-header p {
+        color: #465b52;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      
+      .image-container {
+        overflow: hidden;
+        height: 250px;
+      }
+      
+      @media (max-width: 768px) {
+        .blog-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .blog-container {
+          margin: 0 20px;
+        }
+        
+        .blog-title {
+          min-height: auto;
+        }
+        
+        .blog-excerpt {
+          min-height: auto;
+        }
+      }
+      
+      /* Hide extra blog posts initially */
+      .blog-article.hidden {
+        display: none;
+      }
+      
+      .error-message {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+      
+      .error-message i {
+        font-size: 48px;
+        color: #ff6b6b;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--header section-->
+    <header>
+      <div id="header">
+        <div class="header-logo">
+          <a href="index.html"><img src="images/logo.png" alt="FashionHub Logo" /></a>
+        </div>
+        <div class="header-list">
+          <nav class="header-list-nav" aria-label="Main Navigation">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a class="active" href="blog.html">Blog</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </nav>
+          <div class="header-list-icon">
+            <a href="#" aria-label="Shopping Cart"><i class="fa fa-bag-shopping"></i></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!--main section-->
+    <main style="margin-top: 100px;">
+      <section id="page-header" style="background-image: url('images/banner/b19.jpg'); background-size: cover; height: 40vh; display: flex; align-items: center; justify-content: center; flex-direction: column; color: white; text-align: center;">
+        <h1>Our Blog</h1>
+        <p>Stay updated with latest fashion trends and tips</p>
+      </section>
+
+      <section class="section-p1 blog-container">
+        <div class="blog-header">
+          <h1>Latest Articles</h1>
+          <p>Explore fashion insights, styling tips, and industry trends from our experts</p>
+        </div>
+        
+        <!-- Error message container (hidden by default) -->
+        <div class="error-message" id="errorMessage" style="display: none;">
+          <i class="fa-solid fa-exclamation-triangle"></i>
+          <h3>Content Loading Error</h3>
+          <p>There was an issue loading some blog content. Please try refreshing the page or contact support if the problem persists.</p>
+        </div>
+        
+        <div class="blog-grid" id="blogGrid">
+          <article class="blog-article">
+            <div class="image-container">
+              <img src="images/blog/b1.jpg" alt="Summer fashion trends 2024" class="blog-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/088178/ffffff?text=Fashion+Trends'; this.alt='Placeholder image for fashion trends'" />
+            </div>
+            <div class="blog-content">
+              <span class="blog-category">Fashion Tips</span>
+              <h3 class="blog-title">Summer Fashion Trends 2024</h3>
+              <p class="blog-excerpt">Discover the hottest summer fashion trends that will keep you stylish and comfortable throughout the season. From vibrant colors to breathable fabrics...</p>
+              <div class="blog-meta">
+                <span class="blog-date">March 15, 2024</span>
+                <a href="#" class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-article">
+            <div class="image-container">
+              <img src="images/blog/b2.jpg" alt="Wardrobe styling guide" class="blog-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/088178/ffffff?text=Style+Guide'; this.alt='Placeholder image for style guide'" />
+            </div>
+            <div class="blog-content">
+              <span class="blog-category">Style Guide</span>
+              <h3 class="blog-title">How to Style Your Wardrobe</h3>
+              <p class="blog-excerpt">Learn essential styling tips to maximize your wardrobe potential. Create multiple looks with fewer pieces and always look put-together...</p>
+              <div class="blog-meta">
+                <span class="blog-date">March 12, 2024</span>
+                <a href="#" class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-article">
+            <div class="image-container">
+              <img src="images/blog/b3.jpg" alt="Smart shopping on budget" class="blog-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/088178/ffffff?text=Shopping+Tips'; this.alt='Placeholder image for shopping tips'" />
+            </div>
+            <div class="blog-content">
+              <span class="blog-category">Shopping Tips</span>
+              <h3 class="blog-title">Smart Shopping on a Budget</h3>
+              <p class="blog-excerpt">Get the most value for your money with these smart shopping strategies. Learn when to splurge and when to save on fashion items...</p>
+              <div class="blog-meta">
+                <span class="blog-date">March 10, 2024</span>
+                <a href="#" class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-article">
+            <div class="image-container">
+              <img src="images/blog/b4.jpg" alt="Winter to spring transition fashion" class="blog-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/088178/ffffff?text=Seasonal+Fashion'; this.alt='Placeholder image for seasonal fashion'" />
+            </div>
+            <div class="blog-content">
+              <span class="blog-category">Seasonal</span>
+              <h3 class="blog-title">Winter to Spring Transition</h3>
+              <p class="blog-excerpt">Navigate the tricky weather between seasons with layering techniques and versatile pieces that work in changing temperatures...</p>
+              <div class="blog-meta">
+                <span class="blog-date">March 8, 2024</span>
+                <a href="#" class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-article">
+            <div class="image-container">
+              <img src="images/blog/b5.jpg" alt="Accessorizing tips" class="blog-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/088178/ffffff?text=Accessories'; this.alt='Placeholder image for accessories'" />
+            </div>
+            <div class="blog-content">
+              <span class="blog-category">Accessories</span>
+              <h3 class="blog-title">Accessorizing Like a Pro</h3>
+              <p class="blog-excerpt">Transform any outfit with the right accessories. Learn the art of mixing and matching jewelry, bags, and shoes for maximum impact...</p>
+              <div class="blog-meta">
+                <span class="blog-date">March 5, 2024</span>
+                <a href="#" class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-article">
+            <div class="image-container">
+              <img src="images/blog/b6.jpg" alt="Sustainable fashion choices" class="blog-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/088178/ffffff?text=Sustainable+Fashion'; this.alt='Placeholder image for sustainable fashion'" />
+            </div>
+            <div class="blog-content">
+              <span class="blog-category">Sustainability</span>
+              <h3 class="blog-title">Sustainable Fashion Choices</h3>
+              <p class="blog-excerpt">Make environmentally conscious fashion choices without compromising on style. Discover eco-friendly brands and sustainable practices...</p>
+              <div class="blog-meta">
+                <span class="blog-date">March 3, 2024</span>
+                <a href="#" class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Additional hidden blog posts with placeholder images -->
+          <article class="blog-article hidden">
+            <div class="image-container">
+              <img src="images/blog/b1.jpg" alt="Denim fashion guide" class="blog-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/088178/ffffff?text=Denim+Guide'; this.alt='Placeholder image for denim guide'" />
+            </div>
+            <div class="blog-content">
+              <span class="blog-category">Denim Guide</span>
+              <h3 class="blog-title">The Ultimate Denim Guide</h3>
+              <p class="blog-excerpt">From skinny jeans to boyfriend fits, learn how to choose the perfect denim for your body type and style preferences...</p>
+              <div class="blog-meta">
+                <span class="blog-date">February 28, 2024</span>
+                <a href="#" class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-article hidden">
+            <div class="image-container">
+              <img src="images/blog/b2.jpg" alt="Work from home fashion" class="blog-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/088178/ffffff?text=Work+From+Home'; this.alt='Placeholder image for work from home fashion'" />
+            </div>
+            <div class="blog-content">
+              <span class="blog-category">Workwear</span>
+              <h3 class="blog-title">Work From Home Fashion</h3>
+              <p class="blog-excerpt">Stay professional and comfortable while working from home with these stylish yet practical outfit ideas...</p>
+              <div class="blog-meta">
+                <span class="blog-date">February 25, 2024</span>
+                <a href="#" class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-article hidden">
+            <div class="image-container">
+              <img src="images/blog/b3.jpg" alt="Fashion color trends" class="blog-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250/088178/ffffff?text=Color+Trends'; this.alt='Placeholder image for color trends'" />
+            </div>
+            <div class="blog-content">
+              <span class="blog-category">Color Trends</span>
+              <h3 class="blog-title">2024 Fashion Color Palette</h3>
+              <p class="blog-excerpt">Discover the color trends that will dominate fashion in 2024 and learn how to incorporate them into your wardrobe...</p>
+              <div class="blog-meta">
+                <span class="blog-date">February 22, 2024</span>
+                <a href="#" class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="load-more-container">
+          <button class="normal" id="loadMoreBtn">Load More Articles</button>
+        </div>
+      </section>
+
+      <section id="newsletter">
+        <div class="newsletter-text">
+          <h3>Sign Up For Newsletters</h3>
+          <h5>Get e-mail updates about our latest shop and <span>special offers</span></h5>
+        </div>
+        <div class="form">
+          <input type="email" placeholder="Your email address" id="email-address-input" aria-label="Email address for newsletter">
+          <button type="button">Sign Up</button>
+        </div>
+      </section>
+    </main>
+
+    <!--footer section-->
+    <footer>
+      <div id="footer">
+        <div class="contact">
+          <a href="index.html"><img src="images/logo.png" alt="FashionHub Logo" /></a>
+          <br><br><br>
+          <h3>Contact</h3>
+          <address>
+            <p><strong>Address:</strong> Wellington Road, Street 32. San Francisco</p>
+            <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00. Mon - Sat</p>
+          </address>
+          <h3>Follow Us</h3>
+          <br>
+          <div class="socials">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-square"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="about">
+          <h3>About</h3>
+          <br>
+          <a href="#">About Us</a>
+          <a href="#">Delivery Information</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="myaccount">
+          <h3>My Account</h3>
+          <br>
+          <a href="#">Sign In</a>
+          <a href="#">View Cart</a>
+          <a href="#">My Wishlist</a>
+          <a href="#">Track My Order</a>
+          <a href="#">Help</a>
+        </div>
+        <div class="install">
+          <h3>Install App</h3>
+          <br>
+          <p>From App Store or Google Play</p>
+          <div class="download">
+            <a href="#"><img src="images/pay/app.jpg" alt="Download from App Store"></a>
+            <a href="#"><img src="images/pay/play.jpg" alt="Download from Google Play"></a>
+          </div>
+          <p>Secured Payment Gateways</p>
+          <img src="images/pay/pay.png" alt="Payment methods accepted">
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Enhanced Load More functionality with error handling
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const hiddenArticles = document.querySelectorAll('.blog-article.hidden');
+        let visibleCount = 6;
+        
+        // Check if images exist before loading
+        function checkImageExists(url, callback) {
+          const img = new Image();
+          img.onload = function() { callback(true); };
+          img.onerror = function() { callback(false); };
+          img.src = url;
+        }
+        
+        if (loadMoreBtn && hiddenArticles.length > 0) {
+          loadMoreBtn.addEventListener('click', function() {
+            try {
+              // Show next 3 articles
+              let loadedCount = 0;
+              for (let i = 0; i < 3 && visibleCount < hiddenArticles.length + 6; i++) {
+                if (hiddenArticles[i]) {
+                  hiddenArticles[i].classList.remove('hidden');
+                  hiddenArticles[i].style.display = 'block';
+                  loadedCount++;
+                }
+              }
+              
+              visibleCount += loadedCount;
+              
+              // Update button text or hide if no more articles
+              if (visibleCount >= hiddenArticles.length + 6) {
+                loadMoreBtn.textContent = 'All Articles Loaded';
+                loadMoreBtn.disabled = true;
+                loadMoreBtn.style.opacity = '0.7';
+                loadMoreBtn.style.cursor = 'not-allowed';
+              } else {
+                loadMoreBtn.textContent = `Load More (${hiddenArticles.length + 6 - visibleCount} remaining)`;
+              }
+            } catch (error) {
+              console.error('Error loading more articles:', error);
+              document.getElementById('errorMessage').style.display = 'block';
+            }
+          });
+        } else if (hiddenArticles.length === 0) {
+          loadMoreBtn.style.display = 'none';
+        }
+        
+        // Blog article click handlers
+        const blogArticles = document.querySelectorAll('.blog-article');
+        blogArticles.forEach(article => {
+          article.addEventListener('click', function(e) {
+            // Don't trigger if clicking on Read More link (it has its own handler)
+            if (!e.target.closest('.blog-read-more')) {
+              // In a real site, this would navigate to the full article page
+              alert('In a real website, this would open the full blog article. This is a demo page.');
+            }
+          });
+          
+          // Add keyboard accessibility
+          article.setAttribute('tabindex', '0');
+          article.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              const articleTitle = this.querySelector('.blog-title').textContent;
+              alert(`Reading article: ${articleTitle}\n\nIn a real website, this would open the full blog article. This is a demo page.`);
+            }
+          });
+        });
+        
+        // Read More link handlers
+        const readMoreLinks = document.querySelectorAll('.blog-read-more');
+        readMoreLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const articleTitle = this.closest('.blog-article').querySelector('.blog-title').textContent;
+            alert(`Reading article: ${articleTitle}\n\nIn a real website, this would open the full blog article. This is a demo page.`);
+          });
+        });
+        
+        // Image error handling
+        const blogImages = document.querySelectorAll('.blog-image');
+        blogImages.forEach(img => {
+          img.addEventListener('error', function() {
+            console.warn('Image failed to load:', this.src);
+            // Error already handled by onerror attribute
+          });
+        });
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
